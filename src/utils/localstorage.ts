@@ -1,4 +1,4 @@
-export const setItem = (key: string, value: any) => {
+export const setItem = (key: string, value: unknown) => {
     if (typeof window !== "undefined") {
         localStorage.setItem(key, JSON.stringify(value));
     } else {

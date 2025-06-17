@@ -1,5 +1,5 @@
 'use client';
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect} from 'react';
 import { getAllProducts } from '@/api/dummyJsonApi';
 
 interface Product{
@@ -36,6 +36,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
                 setProducts(data.products);
             } catch (err) {
                 setError('Failed to fetch products');
+                console.error(err); 
             } finally {
                 setLoading(false);
             }
