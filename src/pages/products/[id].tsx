@@ -35,6 +35,7 @@ const ProductPage: React.FC = () => {
                     setProduct(data);
                 } catch (err) {
                     setError('Failed to fetch product');
+                    console.error(err); 
                 } finally {
                     setLoading(false);
                 }
