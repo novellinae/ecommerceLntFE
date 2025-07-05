@@ -93,7 +93,9 @@ const HomePage: React.FC = () => {
           >
             {categories.map((category) => (
               <option key={category} value={category}>
-                {category.charAt(0).toUpperCase() + category.slice(1)}
+                {typeof category === 'string'
+                  ? category.charAt(0).toUpperCase() + category.slice(1)
+                  : ''}
               </option>
             ))}
           </select>
