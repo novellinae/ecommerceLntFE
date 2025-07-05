@@ -8,13 +8,14 @@ interface ProductCardProps {
     title: string;
     price: number;
     image: string;
+    thumbnail: string;
     stock: number;
     rating: {
       rate: number;
       count: number;
     };
   };
-}  
+}
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     const { addToCart } = useCart();
@@ -23,11 +24,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className="card mb-4">
             <Link href={`/products/${product.id}`}>
                 <Image
-                    src={product.image}
-                    alt={product.title}
-                    width={300}
-                    height={300}
-                    className="card-img-top"
+                src={product.thumbnail}
+                alt={product.title}
+                width={300}
+                height={300}
                 />
             </Link>
             <div className="card-body">
