@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const data = await getCategories(''); // Ambil semua kategori
+        const data = await getCategories(); // Ambil semua kategori
         setCategories(['all', ...data]);
       } catch (err) {
         console.error('Error fetching categories:', err);

@@ -3,17 +3,18 @@ import Image from 'next/image';
 import { useCart } from '@/context/CartContext';
 
 interface ProductCardProps {
-    product: {
-        id: number;
-        title: string;
-        price: number;
-        image: string;
-        rating: {
-            rate: number;
-            count: number;
-        };
+  product: {
+    id: number;
+    title: string;
+    price: number;
+    image: string;
+    stock: number;
+    rating: {
+      rate: number;
+      count: number;
     };
-}   
+  };
+}  
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     const { addToCart } = useCart();
@@ -37,7 +38,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 </p>
                 <button
                     className="btn btn-primary"
-                    onClick={() => addToCart({ id: product.id, title: product.title, price: product.price, image: product.image })}
+                    onClick={() =>
+                        addToCart({
+                            id: product.id,
+                            title: product.title,
+                            price: product.price,
+                            image: product.image,
+                            stock: product.stock,
+                        })
+                    }
                 >
                     Add to Cart
                 </button>

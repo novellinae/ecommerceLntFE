@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { getItem, setItem } from '@/utils/localstorage';
+import { getItem, setItem } from '@/utils/localStorage';
 
 interface CartItem {
     id: number;
@@ -7,6 +7,7 @@ interface CartItem {
     price: number;
     quantity: number;
     image: string; 
+    stock: number;
 }
 interface CartContextType {
     cart: CartItem[];
