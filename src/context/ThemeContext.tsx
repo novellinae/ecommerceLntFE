@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import {getItem, setItem} from '@/utils/localStorage';
+import {getItem, setItem} from '@/utils/localStorages';
 
 type Theme = 'light' | 'dark';
 
