@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { getItem, setItem } from '@/utils/localStorages';
+import { getItem, setItem } from '@/utils/localStorages';import { useEffect } from 'react';
+
+
 
 interface CartItem {
     id: number;
@@ -35,17 +37,14 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             const newItem = { ...product, quantity: 1 };
             return [...prevCart, newItem];
         });
-        setItem('cart', cart);
     };
 
     const removeFromCart = (id: number) => {
         setCart((prevCart) => prevCart.filter(item => item.id !== id));
-        setItem('cart', cart);
     };
 
     const clearCart = () => {
         setCart([]);
-        setItem('cart', []);
     };
 
     const updateQuantity = (id: number, quantity: number) => {
@@ -55,12 +54,15 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                 item.id === id ? { ...item, quantity } : item
             )
         );
-        setItem('cart', cart);
     };
 
     const totalItems = () => cart.reduce((total, item) => total + item.quantity, 0);
 
     const totalPrice = () => cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    useEffect(() => {
+        setItem('cart', cart); 
+    }, [cart]);
+
 
     return (
         <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, updateQuantity, totalItems, totalPrice }}>
