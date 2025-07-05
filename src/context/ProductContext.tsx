@@ -1,24 +1,13 @@
 'use client';
 import React, { createContext, useContext, useState, ReactNode, useEffect} from 'react';
 import { getAllProducts } from '@/api/dummyJsonApi';
+import { Product } from '@/types/product';
 
-interface Product{
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-    category: string;
-    image: string;
-    rating: {
-        rate: number;
-        count: number;
-    };
-}
+
 interface ProductContextType {
     products: Product[];
     loading: boolean;
     error: string | null;
-    fetchProducts: () => Promise<void>;
 }
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
@@ -33,7 +22,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
             setError(null);
             try {
                 const data = await getAllProducts();
-                setProducts(data.products);
+                setProducts(data);
             } catch (err) {
                 setError('Failed to fetch products');
                 console.error(err); 
@@ -46,7 +35,7 @@ export const ProductProvider: React.FC<{ children: ReactNode }> = ({ children })
         }
     }, [products.length]);
     return (
-        <ProductContext.Provider value={{ products, loading, error, fetchProducts: () => fetchProducts() }}>
+        <ProductContext.Provider value={{ products, loading, error }}>
             {children}
         </ProductContext.Provider>
     );
