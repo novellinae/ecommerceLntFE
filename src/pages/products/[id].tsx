@@ -46,14 +46,11 @@ const ProductPage: React.FC = () => {
             <Navbar />
             <div className="container mt-5">
                 <h1 className="mb-4">{product.title}</h1>
-                {/* PERBAIKAN DI SINI: Gunakan product.thumbnail atau product.images[0] */}
                 <Image
                     src={product.thumbnail || product.image || '/placeholder-image.png'} // Gunakan thumbnail, fallback ke images[0], lalu ke placeholder
                     alt={product.title}
                     width={500}
                     height={500}
-                    // Jika Anda menggunakan Tailwind atau CSS kustom, pastikan stylingnya benar
-                    // className="object-contain" // Contoh styling untuk gambar
                 />
                 <p className="mt-3">{product.description}</p>
                 <p className="text-muted">Category: {product.category}</p>
