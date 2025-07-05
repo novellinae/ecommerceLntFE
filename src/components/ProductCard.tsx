@@ -47,6 +47,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                             stock: product.stock,
                         })
                     }
+                    disabled={product.stock <= 0}
                 >
                     Add to Cart
                 </button>
